@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7E17D6141EF390DA00DA7EA8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17D6131EF390DA00DA7EA8 /* DetailsViewController.swift */; };
 		7EDAF4651EF688B900287492 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAF4641EF688B900287492 /* AFNetworking.framework */; };
+		7EDAF4671EF68B8900287492 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAF4661EF68B8900287492 /* MBProgressHUD.framework */; };
 		7EE7A1751EF07BA000897E8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE7A1741EF07BA000897E8E /* AppDelegate.swift */; };
 		7EE7A17A1EF07BA000897E8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7A1781EF07BA000897E8E /* Main.storyboard */; };
 		7EE7A17C1EF07BA000897E8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7A17B1EF07BA000897E8E /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		6042E3494055149E4FA26139 /* Pods_flick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E17D6131EF390DA00DA7EA8 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		7EDAF4641EF688B900287492 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		7EDAF4661EF68B8900287492 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/MBProgressHUD/MBProgressHUD.framework"; sourceTree = "<group>"; };
 		7EE7A1711EF07BA000897E8E /* flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE7A1741EF07BA000897E8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE7A1791EF07BA000897E8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EDAF4671EF68B8900287492 /* MBProgressHUD.framework in Frameworks */,
 				7EDAF4651EF688B900287492 /* AFNetworking.framework in Frameworks */,
 				8886DF328DD9CB2485B30018 /* Pods_flick.framework in Frameworks */,
 			);
@@ -92,6 +95,7 @@
 		D3AE6101274359A051F43498 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EDAF4661EF68B8900287492 /* MBProgressHUD.framework */,
 				7EDAF4641EF688B900287492 /* AFNetworking.framework */,
 				6042E3494055149E4FA26139 /* Pods_flick.framework */,
 			);
@@ -353,6 +357,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/MBProgressHUD",
 				);
 				INFOPLIST_FILE = flick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -370,6 +375,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/MBProgressHUD",
 				);
 				INFOPLIST_FILE = flick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

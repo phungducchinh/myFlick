@@ -8,7 +8,9 @@
 
 import UIKit
 import AFNetworking
-class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+import MBProgressHUD
+
+class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -35,9 +37,10 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         
             tableView.addSubview(refreshControl)
-        
-
-        fetchMovies()
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        MBProgressHUD.hide(for: self.view, animated: true)
+        checkConnection()
+     
     }
 
 
@@ -53,6 +56,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
             delegate: nil,
             delegateQueue: OperationQueue.main
         )
+        
         let task: URLSessionDataTask =
             session.dataTask(with: request,
                              completionHandler: { (dataOrNil, response, error) in
@@ -62,7 +66,14 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                         print("response: \(responseDictionary)")
                                         self.movies = responseDictionary["results"] as! [NSDictionary]
                                         self.tableView.reloadData()
+                                         MBProgressHUD.hide(for: self.view, animated: true)
                                         self.refreshControl.endRefreshing()
+                                        
+                                    }
+                                    else {
+                                       self.tableView.reloadData()
+                                        self.refreshControl.endRefreshing()
+                                        
                                     }
                                 }
             })
@@ -73,7 +84,29 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return movies.count
     }
     
-    
+    func checkConnection(){
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        AFNetworkReachabilityManager.shared().startMonitoring()
+        AFNetworkReachabilityManager.shared().setReachabilityStatusChange { (status: AFNetworkReachabilityStatus?) in
+            switch status!.hashValue{
+            case AFNetworkReachabilityStatus.notReachable.hashValue:
+                var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print("No Internet Connection")
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+                break;
+            case AFNetworkReachabilityStatus.reachableViaWiFi.hashValue,AFNetworkReachabilityStatus.reachableViaWWAN.hashValue:
+                self.fetchMovies()
+                self.refreshControl.endRefreshing()
+                break;
+            default:
+                print("unknown")
+            }
+            
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         //let cell = UITableViewCell()
