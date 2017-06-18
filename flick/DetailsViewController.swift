@@ -14,6 +14,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var datailLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var voteLabel: UILabel!
     
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var scroolView: UIScrollView!
@@ -21,7 +23,8 @@ class DetailsViewController: UIViewController {
     var imgUrl = ""
     var overview = ""
     var titleLb = ""
-    
+    var dateLb = ""
+    var voteLb : Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +40,10 @@ class DetailsViewController: UIViewController {
         overviewLabel.sizeToFit()
         datailLabel.text = titleLb
         datailLabel.sizeToFit()
+        dateLabel.text = dateLb
+        dateLabel.sizeToFit()
+        voteLabel.text = String(voteLb)
+        voteLabel.sizeToFit()
     }
 
     override func didReceiveMemoryWarning() {

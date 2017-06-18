@@ -18,10 +18,12 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var movies = [NSDictionary] ()
     let baseUrl = "http://image.tmdb.org/t/p/w500"
     var refreshControl = UIRefreshControl()
-    
+    var url = URL(string: "")
     var selectedUrl = ""
     var selectedOverview = ""
     var selectedtitleLabel = ""
+    var selecteddateLabel = ""
+    var selectedVote : Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +48,11 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func fetchMovies(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+        if tabBarController?.selectedIndex == 0{
+            url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+        }else {
+            url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+        }
         let request = URLRequest(
             url: url!,
             cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData,
@@ -139,7 +145,8 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         selectedUrl = baseUrl + (movies[indexPath.row]["poster_path"] as! String)
         selectedOverview = movies[indexPath.row]["overview"] as! String
         selectedtitleLabel = movies[indexPath.row]["title"] as! String
-
+        selecteddateLabel = movies[indexPath.row]["release_date"] as! String
+        selectedVote = movies[indexPath.row]["vote_average"] as! Double
         performSegue(withIdentifier: "detailSegue", sender: self)
     }
     
@@ -157,6 +164,8 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         nextVC.imgUrl = selectedUrl
         nextVC.overview = selectedOverview
         nextVC.titleLb = selectedtitleLabel
+        nextVC.dateLb = selecteddateLabel
+        nextVC.voteLb = selectedVote
     }
  
 
