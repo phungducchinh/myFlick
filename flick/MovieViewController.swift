@@ -12,10 +12,10 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     
-    //var array:[Int] = [1, 2, 3]
+    
     var movies = [NSDictionary] ()
     let baseUrl = "http://image.tmdb.org/t/p/w500"
-    var refreshControl : UIRefreshControl!
+    var refreshControl = UIRefreshControl()
     
     var selectedUrl = ""
     var selectedOverview = ""
@@ -25,46 +25,21 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         // Do any additional setup after loading the view.
         
-        let refreshControl = UIRefreshControl()
+        
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: "refresh", for: UIControlEvents.valueChanged)
-        //refreshControl.addTarget(self, action: #selector(ViewController.refreshData(sender:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(MovieViewController.fetchMovies), for: UIControlEvents.valueChanged)
+
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
         
- //     loadData()
+            tableView.addSubview(refreshControl)
+        
+
         fetchMovies()
     }
-    
-//    func refresh(sender:AnyObject) {
-//        self.loadData()
-//    }
-//    
-//    func loadData() {
-////        url.getFeedItems({ (items, error) in
-////            if error != nil {
-////                let alert = UIAlertController(title: "Error", message: "Could not load stock quotes \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-////                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-////                self.presentViewController(alert, animated: true, completion: nil)
-////            }
-////            self.itemsArray = items
-////            
-////            // tell refresh control it can stop showing up now
-//            if self.refreshControl.beginRefreshing() as! Bool
-//            {
-//                self.refreshControl.endRefreshing()
-//            }
-//            
-//            self.tableView?.reloadData()
-//        
-//    }
+
 
     func fetchMovies(){
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -87,6 +62,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                         print("response: \(responseDictionary)")
                                         self.movies = responseDictionary["results"] as! [NSDictionary]
                                         self.tableView.reloadData()
+                                        self.refreshControl.endRefreshing()
                                     }
                                 }
             })

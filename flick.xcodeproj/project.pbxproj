@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E17D6141EF390DA00DA7EA8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17D6131EF390DA00DA7EA8 /* DetailsViewController.swift */; };
+		7EDAF4651EF688B900287492 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDAF4641EF688B900287492 /* AFNetworking.framework */; };
 		7EE7A1751EF07BA000897E8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE7A1741EF07BA000897E8E /* AppDelegate.swift */; };
 		7EE7A17A1EF07BA000897E8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7A1781EF07BA000897E8E /* Main.storyboard */; };
 		7EE7A17C1EF07BA000897E8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EE7A17B1EF07BA000897E8E /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		28E027910E330ABF284F506A /* Pods-flick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flick.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flick/Pods-flick.debug.xcconfig"; sourceTree = "<group>"; };
 		6042E3494055149E4FA26139 /* Pods_flick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E17D6131EF390DA00DA7EA8 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		7EDAF4641EF688B900287492 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
 		7EE7A1711EF07BA000897E8E /* flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE7A1741EF07BA000897E8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE7A1791EF07BA000897E8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EDAF4651EF688B900287492 /* AFNetworking.framework in Frameworks */,
 				8886DF328DD9CB2485B30018 /* Pods_flick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +92,7 @@
 		D3AE6101274359A051F43498 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EDAF4641EF688B900287492 /* AFNetworking.framework */,
 				6042E3494055149E4FA26139 /* Pods_flick.framework */,
 			);
 			name = Frameworks;
@@ -346,6 +350,10 @@
 			baseConfigurationReference = 28E027910E330ABF284F506A /* Pods-flick.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+				);
 				INFOPLIST_FILE = flick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeschool.flick;
@@ -359,6 +367,10 @@
 			baseConfigurationReference = 1B84F97191CC8DC03299AA6A /* Pods-flick.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/AFNetworking",
+				);
 				INFOPLIST_FILE = flick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codeschool.flick;
