@@ -24,6 +24,9 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var selectedtitleLabel = ""
     var selecteddateLabel = ""
     var selectedVote : Double = 0.0
+    var searchbarNav = UISearchBar()
+    var search = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,6 +45,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         MBProgressHUD.showAdded(to: self.view, animated: true)
         MBProgressHUD.hide(for: self.view, animated: true)
         checkConnection()
+        searchBar()
      
     }
 
@@ -62,6 +66,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
             delegate: nil,
             delegateQueue: OperationQueue.main
         )
+       
         
         let task: URLSessionDataTask =
             session.dataTask(with: request,
@@ -121,19 +126,18 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "moviesCell") as! MoviesCell
         cell.titleLabel.text = movies[indexPath.row]["title"] as! String
         cell.overviewLabel.text = movies[indexPath.row]["overview"] as! String
-        
         let imgUrl = baseUrl + (movies[indexPath.row]["poster_path"] as! String)
-
-        
         cell.posterImage.setImageWith(NSURL(string: imgUrl) as! URL)
+        
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = backgroundView
 
+               
         return cell
     }
     
-//    func refresh(){
-//        tableView.reloadData()
-//        //refreshControl.endRefreshing()
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -148,6 +152,20 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         selecteddateLabel = movies[indexPath.row]["release_date"] as! String
         selectedVote = movies[indexPath.row]["vote_average"] as! Double
         performSegue(withIdentifier: "detailSegue", sender: self)
+    }
+    
+    func searchBar(){
+        searchbarNav = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        searchbarNav.showsCancelButton = true
+        searchbarNav.placeholder = "Enter search your hear"
+        
+        //searchbarNav.delegate = self as! UISearchBarDelegate
+        searchbarNav.showsScopeBar = true
+        searchbarNav.tintColor = UIColor.lightGray
+        self.navigationItem.titleView = searchbarNav
+        search = searchbarNav.text!
+        print(search)
+        
     }
     
     // MARK: - Navigation
