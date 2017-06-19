@@ -157,7 +157,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func searchBar(){
         searchbarNav = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         searchbarNav.showsCancelButton = true
-        searchbarNav.placeholder = "Enter search your hear"
+        searchbarNav.placeholder = "Enter search your here"
         
         //searchbarNav.delegate = self as! UISearchBarDelegate
         searchbarNav.showsScopeBar = true
